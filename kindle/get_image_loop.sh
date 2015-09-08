@@ -7,15 +7,15 @@ cd /mnt/us/kite
 
 while true
 do
-	if wget http://server/path/to/weather-script-output.png; then
+	if wget http://server/path/to/script-output.png; then
 		eips -c
 		eips -c
-		eips -g weather-script-output.png
-		rm weather-script-output.png
+		eips -g script-output.png
+		rm script-output.png
 	else
 		eips -c
 		eips -c
-		eips -g weather-image-error.png
+		eips -g image_unavailable.png
 	fi
 	sleep 10
 done
