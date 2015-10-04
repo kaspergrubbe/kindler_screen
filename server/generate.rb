@@ -34,7 +34,7 @@ class Kindler
 
   def screenshot_and_open!
     `[ -f poltergeist.png ] && rm poltergeist.png`
-    save_screenshot('poltergeist.png', :full => true)
+    save_screenshot('poltergeist.png')
     `pngcrush -c 0 -ow poltergeist.png`
     `open poltergeist.png`
   end
