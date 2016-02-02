@@ -1,10 +1,19 @@
+# SETUP USBNETWORK ON OSX:
+# Selected the Interface "RNDIS/Ethernet Gadget" , I named it "Kindle"
+
+# I set the interface as follow:
+# Configure IPv4: Manually
+# IP Address: 192.168.2.1
+# Subnet mask: 255.255.255.0
+# Click Apply.
+
 # WEATHER
 if [ -f compiled_script.sh ]; then rm compiled_script.sh; fi
 
 iconv -f UTF-8 -t ASCII//IGNORE get_image_loop.sh > compiled_script.sh
 chmod +x compiled_script.sh
 
-scp weather-image-error.png root@192.168.2.2:/mnt/us/kite/weather-image-error.png
+scp image_unavailable.png   root@192.168.2.2:/mnt/us/kite/image_unavailable.png
 scp compiled_script.sh      root@192.168.2.2:/mnt/us/kite/get_image_loop.sh
 
 if [ -f compiled_script.sh ]; then rm compiled_script.sh; fi
