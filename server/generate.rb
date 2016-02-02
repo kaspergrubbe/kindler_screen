@@ -1,11 +1,12 @@
 require 'capybara'
 require 'capybara/dsl'
 require 'capybara/poltergeist'
+require 'haml'
 
 class Kindler
   include Capybara::DSL
 
-  def initialize()
+  def initialize
     Capybara.run_server        = false
     #Capybara.app_host          = 'http://www.google.com'
     Capybara.exact             = true
@@ -25,8 +26,20 @@ class Kindler
     end
   end
 
+  def render_template
+    template = File.read('template.haml')
+    html     = Haml::Engine.new(template).render
+
+    File.delete('output.html') if File.exists?('output.html')
+
+    File.open('output.html', 'w') do |file|
+      file.write(html)
+    end
+
+  end
+
   def visit_and_open
-    Capybara.current_session.driver.visit('index.html')
+    Capybara.current_session.driver.visit('output.html')
     screenshot_and_open!
   end
 
@@ -42,5 +55,6 @@ class Kindler
 end
 
 sp = Kindler.new
+sp.render_template
 sp.visit_and_open
 
