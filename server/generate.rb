@@ -21,7 +21,7 @@ class Kindler
         timeout: 60,
         phantomjs_logger: StringIO.new,
         logger: nil,
-        window_size: [800, 600],
+        window_size: [600, 800],
       })
     end
   end
