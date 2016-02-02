@@ -15,7 +15,7 @@ class Kindler
 
     Capybara.reset_sessions!
 
-    Capybara.register_driver :poltergeist do |app|
+    Capybara.register_driver(:poltergeist) do |app|
       Capybara::Poltergeist::Driver.new(app, {
         js_errors: false, # When false, Javascript errors do not get re-raised in Ruby.
         timeout: 60,
