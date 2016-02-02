@@ -9,7 +9,12 @@ class Kindler
   def initialize(options = {})
     orientation = options.fetch(:orientation, 'landscape')
 
-    unless ['landscape','portrait'].include?(orientation)
+    case orientation
+    when 'landscape'
+      window_size = [800, 600]
+    when 'portrait'
+      window_size = [600, 800]
+    else
       raise 'Wrong input supplied, orientation should be either landscape or portrait'
     end
 
