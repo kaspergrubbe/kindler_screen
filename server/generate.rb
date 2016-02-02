@@ -6,7 +6,13 @@ require 'haml'
 class Kindler
   include Capybara::DSL
 
-  def initialize
+  def initialize(options = {})
+    orientation = options.fetch(:orientation, 'landscape')
+
+    unless ['landscape','portrait'].include?(orientation)
+      raise 'Wrong input supplied, orientation should be either landscape or portrait'
+    end
+
     Capybara.run_server        = false
     #Capybara.app_host          = 'http://www.google.com'
     Capybara.exact             = true
