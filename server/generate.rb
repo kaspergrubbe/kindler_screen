@@ -37,33 +37,34 @@ class Kindler
     end
   end
 
-  def render_template
-    template = File.read('template.haml')
-    html     = Haml::Engine.new(template).render
-
-    File.open('output.html', 'w') do |file|
-      file.write(html)
-    end
-
-  end
-
-  def visit_and_open
-    Capybara.current_session.driver.visit('output.html')
-    screenshot_and_open!
+  def process!(template_path:, image_output_path:)
+    render_template(template_path, 'test.html')
+    Capybara.current_session.driver.visit('test.html')
+    screenshot(image_output_path)
+    make_black_and_white(image_output_path)
   end
 
  private
 
-  def screenshot_and_open!
-    `[ -f poltergeist.png ] && rm poltergeist.png`
-    save_screenshot('poltergeist.png')
-    `pngcrush -c 0 -ow poltergeist.png`
-    `open poltergeist.png`
+  def render_template(template_path, output_path)
+    template = File.read(template_path)
+    html     = Haml::Engine.new(template).render
+
+    File.open(output_path, 'w') do |file|
+      file.write(html)
+    end
+  end
+
+  def screenshot(image_output_path)
+    save_screenshot(image_output_path)
+  end
+
+  def make_black_and_white(image_path)
+    # -c 0 turns off colors
+    # -ow overwrites
+    `pngcrush -c 0 -ow #{image_path}`
   end
 
 end
 
-sp = Kindler.new
-sp.render_template
-sp.visit_and_open
-
+Kindler.new.process!(template_path: 'template.haml', image_output_path: 'output.png')
