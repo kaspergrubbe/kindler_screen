@@ -9,6 +9,8 @@ GEM
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
     cliver (0.3.2)
+    haml (4.0.6)
+      tilt
     launchy (2.4.3)
       addressable (~> 2.3)
     mime-types (2.6.1)
@@ -24,6 +26,7 @@ GEM
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
+    tilt (2.0.1)
     websocket-driver (0.6.2)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -34,6 +37,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  haml
   launchy
   poltergeist
 
