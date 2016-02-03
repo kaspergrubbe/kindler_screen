@@ -41,9 +41,7 @@ class Kindler
     template = File.read('template.haml')
     html     = Haml::Engine.new(template).render
 
-    File.delete('output.html') if File.exists?('output.html')
-
-    File.open('output.html', 'w') do |file|
+    File.open('output.html', 'w+') do |file|
       file.write(html)
     end
 
