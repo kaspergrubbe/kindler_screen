@@ -41,7 +41,7 @@ class Kindler
     template = File.read('template.haml')
     html     = Haml::Engine.new(template).render
 
-    File.open('output.html', 'w+') do |file|
+    File.open('output.html', 'w') do |file|
       file.write(html)
     end
 
