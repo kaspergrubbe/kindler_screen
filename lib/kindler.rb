@@ -30,10 +30,19 @@ class Kindler
   end
 
   def process!(template_path:, image_output_path:)
-    render_template(template_path, 'test.html')
-    Capybara.current_session.driver.visit('test.html')
-    screenshot(image_output_path)
-    make_black_and_white(image_output_path)
+    tmpfile = File.open("kindler_screen_#{(Random.new.rand * 10000).to_i}.html",'w')
+
+    begin
+      render_template(template_path, tmpfile)
+      @user_agent.visit(tmpfile.path)
+      screenshot(image_output_path)
+      make_black_and_white(image_output_path)
+    ensure
+      tmpfile.close
+      File.delete(tmpfile.path)
+    end
+
+    true
   end
 
  private
