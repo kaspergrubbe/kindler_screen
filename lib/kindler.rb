@@ -19,7 +19,6 @@ class Kindler
     end
 
     Capybara.run_server        = false
-    #Capybara.app_host          = 'http://www.google.com'
     Capybara.exact             = true
     Capybara.current_driver    = :poltergeist
     Capybara.javascript_driver = :poltergeist
@@ -64,7 +63,6 @@ class Kindler
     # -ow overwrites
     `pngcrush -c 0 -ow #{image_path}`
   end
-
 end
 
-Kindler.new.process!(template_path: 'template.haml', image_output_path: 'output.png')
+#Kindler.new.process!(template_path: 'template.haml', image_output_path: 'output.png')
