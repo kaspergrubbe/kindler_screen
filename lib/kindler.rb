@@ -57,7 +57,7 @@ class Kindler
   end
 
   def screenshot(image_output_path)
-    save_screenshot(image_output_path)
+    @user_agent.save_screenshot(image_output_path)
   end
 
   def make_black_and_white(image_path)
