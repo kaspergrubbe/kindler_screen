@@ -7,13 +7,11 @@ class Kindler
   include Capybara::DSL
 
   def initialize(options = {})
-    orientation = options.fetch(:orientation, 'landscape')
-
-    case orientation
+    window_size = case options.fetch(:orientation, 'landscape')
     when 'landscape'
-      window_size = [800, 600]
+      [800, 600]
     when 'portrait'
-      window_size = [600, 800]
+      [600, 800]
     else
       raise 'Wrong input supplied, orientation should be either landscape or portrait'
     end
