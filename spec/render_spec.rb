@@ -10,27 +10,37 @@ def dimensions_for(file)
 end
 
 RSpec.describe "Kindler rendering" do
-  it "blah!" do
-    k = Kindler.new.process!(template_path: 'spec/templates/simple.haml', image_output_path: 'render_output.png')
+  before(:all) do
+    @output_dir = Dir.mktmpdir('kindler')
+  end
+
+  it "should create the file and default to landscape" do
+    output_file = "#{@output_dir}/render_output.png"
+
+    k = Kindler.new.process!(template_path: 'spec/templates/simple.haml',
+                             image_output_path: output_file)
 
     expect(k).to                                   eq true
     expect(File.exist?('render_output.png')).to    eq true
 
-    # Default is landscape-mode
-    expect(dimensions_for('render_output.png')).to eq(LANDSCAPE_DIMENSIONS)
+    expect(dimensions_for(output_file)).to eq(LANDSCAPE_DIMENSIONS)
   end
 
   it "should render in portrait mode" do
-    k = Kindler.new(orientation: 'portrait').process!(template_path: 'spec/templates/simple.haml',
-                                                      image_output_path: 'portrait.png')
+    output_file = "#{@output_dir}/portrait.png"
 
-    expect(dimensions_for('portrait.png')).to eq(PORTRAIT_DIMENSIONS)
+    k = Kindler.new(orientation: 'portrait').process!(template_path: 'spec/templates/simple.haml',
+                                                      image_output_path: output_file)
+
+    expect(dimensions_for(output_file)).to eq(PORTRAIT_DIMENSIONS)
   end
 
   it "should render in landscape mode" do
-    k = Kindler.new(orientation: 'landscape').process!(template_path:     'spec/templates/simple.haml',
-                                                       image_output_path: 'landscape.png')
+    output_file = "#{@output_dir}/landscape.png"
 
-    expect(dimensions_for('landscape.png')).to eq(LANDSCAPE_DIMENSIONS)
+    k = Kindler.new(orientation: 'landscape').process!(template_path: 'spec/templates/simple.haml',
+                                                       image_output_path: output_file)
+
+    expect(dimensions_for(output_file)).to eq(LANDSCAPE_DIMENSIONS)
   end
 end
