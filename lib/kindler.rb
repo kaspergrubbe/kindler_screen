@@ -64,5 +64,3 @@ class Kindler
     `pngcrush -c 0 -ow #{image_path}`
   end
 end
-
-#Kindler.new.process!(template_path: 'template.haml', image_output_path: 'output.png')
