@@ -16,22 +16,17 @@ class Kindler
       raise 'Wrong input supplied, orientation should be either landscape or portrait'
     end
 
-    Capybara.run_server        = false
-    Capybara.exact             = true
-    Capybara.current_driver    = :poltergeist
-    Capybara.javascript_driver = :poltergeist
-
-    Capybara.reset_sessions!
-
     Capybara.register_driver(:poltergeist) do |app|
       Capybara::Poltergeist::Driver.new(app, {
-        js_errors: false, # When false, Javascript errors do not get re-raised in Ruby.
-        timeout: 60,
+        js_errors:        false, # When false, Javascript errors do not get re-raised in Ruby.
+        timeout:          60,
         phantomjs_logger: StringIO.new,
-        logger: nil,
-        window_size: window_size,
+        logger:           nil,
+        window_size:      window_size,
       })
     end
+
+    @user_agent = Capybara::Session.new(:poltergeist)
   end
 
   def process!(template_path:, image_output_path:)
