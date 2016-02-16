@@ -47,13 +47,13 @@ class Kindler
 
  private
 
-  def render_template(template_path, output_path)
+  def render_template(template_path, output_file)
     template = File.read(template_path)
     html     = Haml::Engine.new(template).render
 
-    File.open(output_path, 'w') do |file|
-      file.write(html)
-    end
+    output_file.write(html)
+    output_file.flush
+    output_file.rewind
   end
 
   def screenshot(image_output_path)
