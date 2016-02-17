@@ -21,7 +21,7 @@ RSpec.describe "Kindler rendering" do
                              image_output_path: output_file)
 
     expect(k).to                                   eq true
-    expect(File.exist?('render_output.png')).to    eq true
+    expect(File.exist?(output_file)).to    eq true
 
     expect(dimensions_for(output_file)).to eq(LANDSCAPE_DIMENSIONS)
   end
