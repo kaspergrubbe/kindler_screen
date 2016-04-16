@@ -43,4 +43,13 @@ RSpec.describe "Kindler rendering" do
 
     expect(dimensions_for(output_file)).to eq(LANDSCAPE_DIMENSIONS)
   end
+
+  it "should render the weather example in landscape mode", focus:true do
+    output_file = "#{@output_dir}/weather.png"
+
+    k = Kindler.new(orientation: 'portrait').process!(template_path: 'spec/templates/weather.haml',
+                                                       image_output_path: output_file)
+
+    `open #{output_file}`
+  end
 end

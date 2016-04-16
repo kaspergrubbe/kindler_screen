@@ -1,0 +1,61 @@
+%html
+  %head
+    %link{:href => 'https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic', :rel => 'stylesheet', :type => 'text/css'}
+    %link{:rel => "stylesheet", :href => "http://yui.yahooapis.com/pure/0.6.0/pure-min.css"}
+
+:css
+  body {
+    background-color: #FFFFFF;
+  }
+
+  h1, h2, p {
+    margin: 0 0 0 0;
+  }
+
+  h1, h2, p {
+    padding: 0 0 0 0;
+  }
+
+  html, button, input, select, textarea,
+  .pure-g [class *= "pure-u"] {
+      font-family: 'Open Sans', sans-serif;
+  }
+
+%div{class: 'pure-g'}
+  %div{class: 'pure-u-1'}
+    %h1 Monday, 21 February 2016
+  %div{class: 'pure-u-2-3'}
+    %img{src: 'spec/templates/np_weather_wind_sun.svg', width: '100%'}
+  %div{class: 'pure-u-1-3', style: "text-align: center; vertical-align: middle;"}
+    %p High:
+    %h1{:style => "font-size: 500%"} 40
+    %p Low:
+    %h1 40
+  %div{class: 'pure-u-1-3'}
+    %p
+      %strong Tomorrow
+    %img{src: 'spec/templates/np_weather_wind_sun.svg', width: '100%'}
+  %div{class: 'pure-u-1-3'}
+    %p Sunday
+    %img{src: 'spec/templates/np_weather_wind_sun.svg', width: '100%'}
+  %div{class: 'pure-u-1-3'}
+    %p Monday
+    %img{src: 'spec/templates/np_weather_wind_sun.svg', width: '100%'}
+
+/ %table{height: '600px'}
+/   %tr
+/     %td
+/       %img{src: 'spec/templates/np_weather_wind_sun.svg', width: '400px'}
+/     %td{rowspan: '2', width: '400px', valign: 'top'}
+/       %h1="17 February 2016"
+/       %hr
+/       %h2="09:00 - Meeting with Robert"
+/       %p="Crisis meeting about stuff!"
+/       %hr
+/       %h2="12:00 - Check-in about current projects"
+/       %p="Talk about all the stuff that isn't done but should have been."
+/       %hr
+/       %h2="21:00 - Go to the pub"
+/       %p="Cry about all the stuff that haven't been done."
+/   %tr
+/     %td="29 degrees"
